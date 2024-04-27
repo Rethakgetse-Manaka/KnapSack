@@ -1,8 +1,8 @@
 public class Item {
-    public int weight;
-    public int value;
+    public double weight;
+    public double value;
     public int index;
-    public Item(int weight, int value, int index) {
+    public Item(double weight, double value, int index) {
         this.weight = weight;
         this.value = value;
         this.index = index;

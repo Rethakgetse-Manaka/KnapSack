@@ -2,15 +2,15 @@ import java.util.Random;
 
 public class Solution {
     public Item[] itemsSelected;
-    private int totalValue;
-    private int totalWeight;
-    int[] weights;
-    int[] values;
+    private double totalValue;
+    private double totalWeight;
+    double[] weights;
+    double[] values;
     double fitness;
     long seed = 12345;
     Random rand;
 
-    public Solution(int numItems, int[]weights, int[] values) {
+    public Solution(int numItems, double[]weights, double[] values) {
         itemsSelected = new Item[numItems];
         rand = new Random(seed);
         this.weights = weights;
@@ -39,15 +39,15 @@ public class Solution {
     public double getFitness() {
         return fitness;
     }
-    public void mutate(int maxWeight) {
+    public void mutate(double maxWeight) {
         
     }
 
-    public int getValue() {
+    public double getValue() {
         return totalValue;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return totalWeight;
     }
 

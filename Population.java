@@ -3,14 +3,14 @@ public class Population {
     public Solution[] solutions;
     private int populationSize;
     private int numItems;
-    private int[] weights;
-    private int[] values;
+    private double[] weights;
+    private double[] values;
     double totalFitness;
-    private int maxWeight;
+    private double maxWeight;
     long seed = 12345;
     Random rand;
 
-    public Population(int populationSize, int numItems, int[] weights, int[] values, int maxWeight) {
+    public Population(int populationSize, int numItems, double[] weights, double[] values, double maxWeight) {
         this.populationSize = populationSize;
         this.numItems = numItems;
         this.weights = weights;

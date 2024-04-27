@@ -3,22 +3,22 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class KnapSack{
-    int maxWeight;
+    double maxWeight;
     int numItems;
-    int weights[];
-    int values[];
+    double weights[];
+    double values[];
     int populationSize;
     int generationSize;
     double mutationRate;
     double crossoverRate;
     String fileName;
-    public KnapSack(String fileName,int populationSize,int generationSize, double mutationRate){
+    public KnapSack(String fileName,int populationSize,int generationSize, double mutationRate, double crossoverRate){
         this.fileName = fileName;
         this.populationSize = populationSize;
         this. generationSize= generationSize;
         this.mutationRate = mutationRate;
         readFromFile(fileName);
-        this.crossoverRate = 0.6;
+        this.crossoverRate = crossoverRate;
     }
     private void readFromFile(String fileName) {
         try {
@@ -30,19 +30,22 @@ public class KnapSack{
             if (scanner.hasNextLine()) {
                 String[] firstLine = scanner.nextLine().split(" ");
                 numItems = Integer.parseInt(firstLine[0]);
-                maxWeight = Integer.parseInt(firstLine[1]);
+                maxWeight = Double.parseDouble(firstLine[1]);
             }
 
             // Initialize arrays to store weights and values
-            weights = new int[numItems];
-            values = new int[numItems];
+            weights = new double[numItems];
+            values = new double[numItems];
 
             int i = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                if(line.isEmpty()){
+                    continue;
+                }
                 String[] parts = line.split(" ");
-                weights[i] = Integer.parseInt(parts[1]);
-                values[i] = Integer.parseInt(parts[0]);
+                weights[i] = Double.parseDouble(parts[1]);
+                values[i] = Double.parseDouble(parts[0]);
                 i++;
             }
 
