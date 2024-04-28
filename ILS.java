@@ -11,21 +11,6 @@ public class ILS {
         rand = new Random(12345);
     }
 
-    public Solution iteratedLocalSearch(Solution initialSolution, int maxIterations){
-        currentSolution = initialSolution.clone(); // Clone the initial solution
-        bestSolution = currentSolution.clone(); // Initialize the best solution
-
-        for (int i = 0; i < maxIterations; i++) {
-            Solution perturbedSolution = perturb(currentSolution); 
-            Solution localOptimum = localSearch(perturbedSolution); 
-
-            if (localOptimum.getFitness() > bestSolution.getFitness()) {
-                bestSolution = localOptimum.clone();
-            }
-        }
-        bestSolution.evaluateFitness();
-        return bestSolution;
-    }
     private Solution perturb(Solution solution){
         Solution perturbedSolution = solution.clone(); // Clone the current solution
 
@@ -44,23 +29,24 @@ public class ILS {
 
         return perturbedSolution;
     }
-    private Solution localSearch(Solution solution){
-        // Implement local search here
+    public Solution localSearch(Solution solution, int maxIterations){
         Solution currentSolution = solution.clone();
-        boolean improved = true;
-        while(improved){
-            improved = false;
-            for(int i = 0; i < currentSolution.getItemsSelected().length; i++){
-                if(currentSolution.itemsSelected[i] != null){
+        for (int iteration = 0; iteration < maxIterations; iteration++) {
+            boolean improved = false;
+            for (int i = 0; i < currentSolution.getItemsSelected().length; i++) {
+                if (currentSolution.itemsSelected[i] != null) {
                     continue;
                 }
                 Solution newSolution = currentSolution.clone();
                 newSolution.getItemsSelected()[i] = new Item(newSolution.weights[i], newSolution.values[i], i);
                 newSolution.evaluateFitness();
-                if(newSolution.getFitness() > currentSolution.getFitness()){
+                if (newSolution.getFitness() > currentSolution.getFitness()) {
                     currentSolution = newSolution;
                     improved = true;
                 }
+            }
+            if (!improved) {
+                break; 
             }
         }
         currentSolution.evaluateFitness();

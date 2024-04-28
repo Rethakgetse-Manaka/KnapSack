@@ -72,7 +72,7 @@ public class KnapSack{
         bestSolution = population.getBestSolution();
         // Apply ILS to improve the best solution
         if (bestSolution != null) {
-            bestSolution = ils.iteratedLocalSearch(bestSolution, ilsIterations);
+            bestSolution = ils.localSearch(bestSolution, ilsIterations);
         }
         if(bestSolution == null){
             System.out.println("No solution found");
