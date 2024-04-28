@@ -103,7 +103,7 @@ public class Population {
             solutions[i].evaluateFitness(maxWeight);
             if(solutions[i].getFitness() > bestFitness){
                 bestFitness = solutions[i].getFitness();
-                bestSolution = solutions[i];
+                bestSolution = solutions[i].clone();
             }
         }
         return bestSolution;

@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        KnapSack knapSack = new KnapSack("f10_l-d_kp_20_879", 5000, 500, 0.6, 0.6);
+        KnapSack knapSack = new KnapSack("knapPI_1_100_1000_1", 5000, 500, 0.6, 0.6);
 
         System.out.println("Max Weight: " + knapSack.maxWeight);
         System.out.println("Number of Items: " + knapSack.numItems);
