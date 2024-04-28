@@ -56,6 +56,9 @@ public class KnapSack{
     }
     public void solve(){
         Population population = new Population(populationSize, numItems, weights, values, maxWeight);
+        Solution bestSolution = null;
+        int ilsIterations = 1000;
+        ILS ils = new ILS();
         population.initialSolution();
         int generation = 0;
         while(generation < generationSize){
@@ -66,7 +69,11 @@ public class KnapSack{
             population = offspring;
             generation++;
         }
-        Solution bestSolution = population.getBestSolution();
+        bestSolution = population.getBestSolution();
+        // Apply ILS to improve the best solution
+        if (bestSolution != null) {
+            bestSolution = ils.iteratedLocalSearch(bestSolution, ilsIterations);
+        }
         if(bestSolution == null){
             System.out.println("No solution found");
             return;

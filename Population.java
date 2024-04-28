@@ -22,7 +22,7 @@ public class Population {
     public void initialSolution(){
         solutions = new Solution[populationSize];
         for(int i = 0; i < populationSize; i++){
-            solutions[i] = new Solution(numItems, weights, values);
+            solutions[i] = new Solution(numItems, weights, values, maxWeight);
             for(int j = 0; j < numItems; j++){
                 if(rand.nextBoolean()){
                     solutions[i].itemsSelected[j] = new Item(weights[j], values[j], j);
@@ -32,7 +32,7 @@ public class Population {
     }
     public void evaluateFitness(){
         for(int i = 0; i < populationSize; i++){
-            solutions[i].evaluateFitness(maxWeight);
+            solutions[i].evaluateFitness();
             totalFitness += solutions[i].getFitness();
         }
     }
@@ -72,7 +72,7 @@ public class Population {
         for(int i = 0; i < populationSize; i++){
             Solution parent1 = solutions[i];
             Solution parent2 = solutions[rand.nextInt(populationSize)];
-            Solution child = new Solution(numItems, weights, values);
+            Solution child = new Solution(numItems, weights, values, maxWeight);
             for(int j = 0; j < numItems; j++){
                 if(rand.nextDouble() < crossoverRate){
                     child.itemsSelected[j] = parent1.itemsSelected[j];
@@ -100,7 +100,7 @@ public class Population {
         Solution bestSolution = null;
         double bestFitness = 0;
         for(int i = 0; i < populationSize; i++){
-            solutions[i].evaluateFitness(maxWeight);
+            solutions[i].evaluateFitness();
             if(solutions[i].getFitness() > bestFitness){
                 bestFitness = solutions[i].getFitness();
                 bestSolution = solutions[i];

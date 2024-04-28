@@ -4,21 +4,23 @@ public class Solution {
     public Item[] itemsSelected;
     private double totalValue;
     private double totalWeight;
+    public double maxWeight;
     double[] weights;
     double[] values;
     double fitness;
     long seed = 12345;
     Random rand;
 
-    public Solution(int numItems, double[]weights, double[] values) {
+    public Solution(int numItems, double[]weights, double[] values, double maxWeight) {
         itemsSelected = new Item[numItems];
         rand = new Random(seed);
         this.weights = weights;
         this.values = values;
         fitness = 0;
+        this.maxWeight = maxWeight;
     }
 
-    public void evaluateFitness(double maxWeight) {
+    public void evaluateFitness() {
         // Calculate the total value and weight of the selected items
         this.totalValue = 0;
         this.totalWeight = 0;
@@ -39,9 +41,6 @@ public class Solution {
     public double getFitness() {
         return fitness;
     }
-    public void mutate(double maxWeight) {
-        
-    }
 
     public double getValue() {
         return totalValue;
@@ -58,7 +57,7 @@ public class Solution {
         this.itemsSelected = itemsSelected;
     }
     public Solution clone() {
-        Solution clone = new Solution(itemsSelected.length, weights, values);
+        Solution clone = new Solution(itemsSelected.length, weights, values, maxWeight);
         clone.setItemsSelected(itemsSelected.clone());
         return clone;
     }
