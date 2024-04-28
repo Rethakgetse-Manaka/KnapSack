@@ -55,6 +55,8 @@ public class KnapSack{
         }
     }
     public void solve(){
+        long startTime = System.currentTimeMillis(); // Record start time
+        
         Population population = new Population(populationSize, numItems, weights, values, maxWeight);
         population.initialSolution();
         int generation = 0;
@@ -67,10 +69,14 @@ public class KnapSack{
             generation++;
         }
         Solution bestSolution = population.getBestSolution();
+        long endTime = System.currentTimeMillis(); // Record end time
+        
         if(bestSolution == null){
             System.out.println("No solution found");
             return;
         }
+        long runtime = endTime - startTime;
+        System.out.println("Runtime: " + runtime/1000.0 + "seconds");
         System.out.println("Best Solution:");
         System.out.println("Value: " + bestSolution.getValue());
         System.out.println("Weight: " + bestSolution.getWeight());
@@ -81,7 +87,7 @@ public class KnapSack{
                 System.out.println("Item " + (i + 1) + ": Weight=" + weights[i] + ", Value=" + values[i]);
             }
         }
-
-    }
-    
+        
+        
+    } 
 }
