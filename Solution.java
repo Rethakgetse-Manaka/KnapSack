@@ -39,9 +39,7 @@ public class Solution {
     public double getFitness() {
         return fitness;
     }
-    public void mutate(double maxWeight) {
-        
-    }
+
 
     public double getValue() {
         return totalValue;
